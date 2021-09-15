@@ -19,11 +19,14 @@ yum update -y
 #### ALB만 설정하는 경우 아래 사용
 yum install httpd -y
 /bin/systemctl start httpd.service
+systemctl enable httpd.service
+
 ## AWS CodeDeploy 사용하는 경우 Agent 설치 .  아래 eu-west-3 부분 각 Region Code로 수정 필요
 ##예) wget https://aws-codedeploy-eu-west-3.s3.amazonaws.com/latest/codedeploy-agent.noarch.rpm
 wget https://aws-codedeploy-리전코드.s3.amazonaws.com/latest/codedeploy-agent.noarch.rpm
 yum install ruby -y
 yum -y install codedeploy-agent.noarch.rpm
+service codedeploy-agent stop
 service codedeploy-agent start
 rm -f /var/www/html/index.html
 
